@@ -11,31 +11,17 @@
                 <div class="p-6 text-gray-900">
                     <div>
                         <ul>
-                            @foreach ($words as $word)
-                                <li>{{ $word->name }}</li>
-                            @endforeach
-                        </ul>
-                        {{ $words->links() }}
-                        <br>
-                        <br>
-                        <ul>
                             @can('viewAny')
-                                @foreach ($words as $word)
-                                    {{ $word->name . " $domains_fr->extension : " . $word->domains()->where('domain_id', $domains_fr->getKey())->first()->pivot->status }}
-                                    {{ $word->name . " $domains_com->extension : " . $word->domains()->where('domain_id', $domains_com->getKey())->first()->pivot->status }}
-                                @endforeach
+                            @foreach ($words as $word)
+                                {{ $word->name . " $domains_fr->extension : " . $word->domains()->where('domain_id', $domains_fr->getKey())->first()->pivot->status }}
+
+                                {{ $word->name . " $domains_com->extension : " . $word->domains()->where('domain_id', $domains_com->getKey())->first()->pivot->status }}
+                                <br>
+                            @endforeach
                             @endcan
                         </ul>
-                        <br>
-                        <br>
+                        {{ $words->links() }}
                         <ul>
-{{--                            @can('viewAny', \App\Models\Domain::class)--}}
-{{--                                @foreach($domains_com as $domain)--}}
-{{--                                    {{$word->domains->pivot->status}}--}}
-{{--                                @endforeach--}}
-{{--                            @endcan()--}}
-{{--                            {{ $domains_com->links() }}--}}
-
                         </ul>
                         <br>
                         <br>
