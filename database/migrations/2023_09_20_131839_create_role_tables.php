@@ -12,14 +12,14 @@ return new class extends Migration {
     public function up(): void
     {
 
+        // améliorer le code crée plusieur permissions , crée un autre tableau pour faire un foreach sur mes permissions create
+
         $adminRole = Role::create(['name' => 'admin']);
         $user = Role::create(['name' => 'user']);
 
         Permission::create(['name' => 'viewAny']);
 
-        Permission::create(['name' => 'delete']);
-
-        $adminRole->givePermissionTo(['viewAny', 'delete']);
+        $adminRole->givePermissionTo(['viewAny']);
         $user->givePermissionTo(['viewAny']);
 
 

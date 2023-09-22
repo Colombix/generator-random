@@ -17,7 +17,7 @@ class DomainPolicy
 
     public function view(User $user, Domain $domain): bool
     {
-        // A MODIFIER
+        // A FAIRE
         return true;
     }
 

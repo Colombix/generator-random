@@ -10,10 +10,10 @@ return new class extends Migration {
     {
         Schema::create('domains', function (Blueprint $table) {
 
+            // extension limité le nombre de caractère 30 à 40 caractère
             $table->id();
             $table->timestamps();
             $table->string('extension');
-
         });
     }
 

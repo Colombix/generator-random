@@ -9,7 +9,6 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('domain_word', function (Blueprint $table) {
-
             $table->string('status', 255)->default('waiting');
             $table->foreignId('domain_id')->constrained('domains')->onDelete('cascade');
             $table->foreignId('word_id')->constrained('words')->onDelete('cascade');

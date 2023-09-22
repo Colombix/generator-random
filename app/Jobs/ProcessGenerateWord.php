@@ -14,7 +14,10 @@ use Illuminate\Support\Facades\Http;
 use Symfony\Component\DomCrawler\Crawler;
 
 
-class ProcessGenerateWord implements ShouldQueue
+// Changer le naming ProcessGeneraterandomDomain
+
+//@TODO: changer en unique job (until released)
+class ProcessGenerateWord implements ShouldQueue, ShouldBeUnique
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
@@ -25,6 +28,9 @@ class ProcessGenerateWord implements ShouldQueue
 
     public function handle()
     {
+
+        sleep(20);
+
 
         $headers = [
             'authority' => 'feldarkrealms.com',
@@ -47,22 +53,42 @@ class ProcessGenerateWord implements ShouldQueue
         $pattern = '/<div class="col-3 mb-3">([^<]+)<\/div>/';
         preg_match_all($pattern, $content, $matches);
 
-
+// @TODO: naming pas bon
+        //@TODO: generatedWords
         $wordArray = $matches[1];
 
-        $extensionfr = Domain::where('extension', 'fr')->first();
-        $extensioncom = Domain::where('extension', 'com')->first();
+        // ameliorer le naming exemple : domainFr , domainCom
 
-        foreach ($wordArray as $word) {
+        //@TODO: foreach domains
+//        $extensionfr = Domain::where('extension', 'fr')->first();
+//        $extensioncom = Domain::where('extension', 'com')->first();
+
+        $domains = Domain::all();
+
+        $words = Word::createMany(
+            collect($wordArray)
+                ->map(function ($word) {
+                    return ['name' => $word];
+                })
+        );
+
+        foreach ($words as $word) {
 
 
-           $word = Word::create(['name' => $word]);
-            $extensioncom->words()->attach($word, [
-                'status' => 'waiting'
-            ]);
-            $extensionfr->words()->attach($word, [
-                'status' => 'waiting'
-            ]);
+//           $word = Word::create(['name' => $word]);
+           $word->domains()->attach($domains);
+
+//            $extensioncom->words()->attach($word, [
+//                'status' => 'waiting'
+//            ]);
+//            $extensionfr->words()->attach($word, [
+//                'status' => 'waiting'
+//            ]);
+
+            //@TODO: process le job de take domain
+            CheckDomainAvailability::dispatch($word);
         }
+
+
     }
 }

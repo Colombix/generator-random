@@ -11,6 +11,8 @@ class DomainsSeeder extends Seeder
 
     public function run(): void
     {
+
+        // pourrait $etre mit dans la migration
         Domain::create([
             'extension' => 'fr',
         ]);
