@@ -23,6 +23,4 @@ class Extension extends Model
     {
         return $this->belongsToMany(Domain::class, 'domain_word')->withPivot('status');
     }
-
-
 }
