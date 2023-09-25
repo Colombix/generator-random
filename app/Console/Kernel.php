@@ -3,7 +3,7 @@
 namespace App\Console;
 
 use App\Jobs\CheckDomainAvailability;
-use App\Jobs\ProcessGenerateWord;
+use App\Jobs\ProcessGenerateRandomDomain;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -12,11 +12,9 @@ class Kernel extends ConsoleKernel
 
     protected function schedule(Schedule $schedule): void
     {
-        $schedule->job(new ProcessGenerateWord())
+        $schedule->job(new ProcessGenerateRandomDomain())
             ->everySecond();
 
-//        $schedule->job(new CheckDomainAvailability())
-//            ->everySecond();
 
     }
 

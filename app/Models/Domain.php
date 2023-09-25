@@ -7,24 +7,19 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 
-// naming Domain = extension
+
+// naming word = Domain
 class Domain extends Model
 {
     use HasFactory;
 
-
-    protected $table = 'domains';
-
     protected $fillable = [
-        'extension',
+        'name',
+
     ];
 
-
-    // ne pas oublier le retours de belongstomnay
-    public function words(): BelongsToMany
+    public function domains(): BelongsToMany
     {
-        return $this->belongsToMany(Word::class, 'domain_word')->withPivot('status');
+        return $this->belongsToMany(Extension::class, 'domain_word')->withPivot('status');
     }
-
-
 }

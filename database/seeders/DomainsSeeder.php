@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use App\Models\Domain;
+use App\Models\Extension;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
@@ -11,13 +11,12 @@ class DomainsSeeder extends Seeder
 
     public function run(): void
     {
-
-        // pourrait $etre mit dans la migration
-        Domain::create([
+        // TODO pourrait être mit dans la migration
+        Extension::create([
             'extension' => 'fr',
         ]);
 
-        Domain::create([
+        Extension::create([
             'extension' => 'com'
         ]);
     }

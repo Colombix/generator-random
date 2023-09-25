@@ -2,7 +2,7 @@
 
 namespace App\Policies;
 
-use App\Models\Domain;
+use App\Models\Extension;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
@@ -15,7 +15,7 @@ class DomainPolicy
     }
 
 
-    public function view(User $user, Domain $domain): bool
+    public function view(User $user, Extension $domain): bool
     {
         // A FAIRE
         return true;
@@ -28,25 +28,25 @@ class DomainPolicy
     }
 
 
-    public function update(User $user, Domain $domain): bool
+    public function update(User $user, Extension $domain): bool
     {
         return true;
     }
 
 
-    public function delete(User $user, Domain $domain): bool
+    public function delete(User $user, Extension $domain): bool
     {
         return true;
     }
 
 
-    public function restore(User $user, Domain $domain): bool
+    public function restore(User $user, Extension $domain): bool
     {
         return true;
     }
 
 
-    public function forceDelete(User $user, Domain $domain): bool
+    public function forceDelete(User $user, Extension $domain): bool
     {
         return true;
     }

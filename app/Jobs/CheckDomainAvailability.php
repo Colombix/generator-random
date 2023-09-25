@@ -2,8 +2,8 @@
 
 namespace App\Jobs;
 
+use App\Models\Extension;
 use App\Models\Domain;
-use App\Models\Word;
 use Helge\Client\SimpleWhoisClient;
 use Helge\Loader\JsonLoader;
 use Helge\Service\DomainAvailability;
@@ -26,7 +26,7 @@ class CheckDomainAvailability implements ShouldQueue
 
     protected DomainAvailability $domainAvailability;
 
-    public function __construct(protected Word $word)
+    public function __construct(protected Domain $word)
     {
 
         $whoisClient = new SimpleWhoisClient();
@@ -37,40 +37,15 @@ class CheckDomainAvailability implements ShouldQueue
 
     public function handle(): void
     {
-
-//        $extensionfr = Domain::where('extension', 'fr')->first();
-//        $extensioncom = Domain::where('extension', 'com')->first();
-//
-//        // séparer word::all pour reduire le nombre de rêquete avec le if
-//
-//        foreach (Word::all() as $word) {
-//
-//            if ($word->domains()->where('status', 'waiting')->exists()) {
-//                $this->setStatus($service, $word, $extensioncom);
-//                $this->setStatus($service, $word, $extensionfr);
-//            }
-//        }
-
-        foreach (Domain::cursor() as $domain) {
+        foreach (Extension::cursor() as $domain) {
             $this->processAvailability($this->word, $domain);
         }
 
     }
 
     // @TODO: rename --> setStatus
-    private function processAvailability(Word $word, Domain $domain)
+    private function processAvailability(Domain $word, Extension $domain)
     {
-//        $status = 'failed';
-//        $fullDomainName = $word->name . ".$domain->extension";
-//
-//        if ($service->isAvailable($fullDomainName)) {
-//
-//            $status = 'success';
-//        }
-//        $word->save();
-//        $domain->words()->updateExistingPivot($word, [
-//            'status' => $status
-//        ]);
 
         $fullDomainName = "$word->name.$domain->extension";
 

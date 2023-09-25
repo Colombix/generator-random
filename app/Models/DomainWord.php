@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
 
-// naming word = Domain
 class DomainWord extends Pivot
 {
     public array $availability = [

@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\WordController;
+use App\Http\Controllers\WordsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -21,7 +21,7 @@ Route::get('/', function () {
 
 Route::middleware('auth')->group(function () {
 
-    Route::resource('word', WordController::class)->only('index');
+    Route::resource('word', WordsController::class)->only('index');
 
     Route::get('/dashboard', function () {
         return view('word.dashboard');
