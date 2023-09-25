@@ -29,6 +29,7 @@ class CheckDomainAvailability implements ShouldQueue
     public function __construct(protected Domain $word)
     {
 
+
         $whoisClient = new SimpleWhoisClient();
         $dataLoader = new JsonLoader(base_path('/vendor/helgesverre/domain-availability/src/data/servers.json'));
 
@@ -38,6 +39,7 @@ class CheckDomainAvailability implements ShouldQueue
     public function handle(): void
     {
         foreach (Extension::cursor() as $domain) {
+
             $this->processAvailability($this->word, $domain);
         }
 

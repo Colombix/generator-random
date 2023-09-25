@@ -1,7 +1,7 @@
 <?php
 
 use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\WordsController;
+use App\Http\Controllers\DomainsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,12 +16,12 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('word.welcome');
 });
 
 Route::middleware('auth')->group(function () {
 
-    Route::resource('word', WordsController::class)->only('index');
+    Route::resource('word', DomainsController::class)->only('index');
 
     Route::get('/dashboard', function () {
         return view('word.dashboard');

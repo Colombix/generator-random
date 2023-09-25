@@ -11,8 +11,10 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Http;
+use Symfony\Component\DomCrawler\Crawler;
 
 
+// Changer le naming ProcessGeneraterandomDomain
 
 //@TODO: changer en unique job (until released)
 class ProcessGenerateRandomDomain implements ShouldQueue, ShouldBeUnique
@@ -53,27 +55,21 @@ class ProcessGenerateRandomDomain implements ShouldQueue, ShouldBeUnique
 
         $generatedWords = $matches[1];
 
-        //@TODO: foreach domains
-//        $extensionfr = Extension::where('extension', 'fr')->first();
-//        $extensioncom = Extension::where('extension', 'com')->first();
+        $extension = Extension::all();
 
-        $domains = Extension::all();
+        $domains = Domain::createMany(
 
-        $words = Domain::createMany(
             collect($generatedWords)
-                ->map(function ($word) {
-                    return ['name' => $word];
+                ->map(function ($domainName) {
+                    return ['name' => $domainName];
                 })
         );
 
-        foreach ($words as $word) {
+        foreach ($domains as $domain) {
 
+            $domain->extensions()->attach($extension);
 
-           $word->domains()->attach($domains);
-
-
-            //@TODO: process le job de take domain
-            CheckDomainAvailability::dispatch($word);
+            CheckDomainAvailability::dispatch($domain);
         }
 
 

@@ -12,10 +12,10 @@
                     <div>
                         <ul>
                             @can('viewAny')
-                            @foreach ($words as $word)
-                                {{ $word->name . " $domains_fr->extension : " . $word->domains()->where('domain_id', $domains_fr->getKey())->first()->pivot->status }}
+                            @foreach ($domains as $domain)
+                                {{ $domain->name . " $domainsFr->extension : " . $domain->domains()->where('domain_id', $domainsFr->getKey())->first()->pivot->status }}
 
-                                {{ $word->name . " $domains_com->extension : " . $word->domains()->where('domain_id', $domains_com->getKey())->first()->pivot->status }}
+                                {{ $domain->name . " $domainsCom->extension : " . $domain->domains()->where('domain_id', $domainsCom->getKey())->first()->pivot->status }}
                                 <br>
                             @endforeach
                             @endcan
