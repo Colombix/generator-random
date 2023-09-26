@@ -33,10 +33,12 @@ class GenerateRandomDomain implements ShouldQueue, ShouldBeUniqueUntilProcessing
             'accept-language' => 'fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7',
         ];
 
+        $randomLength = rand(3, 8);
+
         $data = [
             'lang' => 'English',
             'words' => '10',
-            'length' => '8',
+            'length' => $randomLength,
         ];
 
 
@@ -44,12 +46,14 @@ class GenerateRandomDomain implements ShouldQueue, ShouldBeUniqueUntilProcessing
 
         $content = $response->body();
 
-        $allExtensions = Extension::pluck('id');
+        $allExtensions = Extension::query()->get()->pluck('id');
 
         $pattern = '/<div class="col-3 mb-3">([^<]+)<\/div>/';
         preg_match_all($pattern, $content, $matches);
 
         $generatedWords = $matches[1];
+
+
 
         foreach ($generatedWords as $generatedWord) {
             $domain = Domain::create(

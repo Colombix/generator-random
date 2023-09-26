@@ -15,11 +15,14 @@ class DomainsController extends Controller
 //        $extensionCom = Extension::where('extension', 'com')->first();
 //        $extensionFr = Extension::where('extension', 'fr')->first();
 
+
+        $extensions = Extension::all();
+
         $domains = Domain::query()
             ->with('extensions' )
             ->paginate(10);
 
-        return view('domains.index', compact('domains'));
+        return view('domains.index', compact('domains','extensions'));
     }
 
     public function __construct()

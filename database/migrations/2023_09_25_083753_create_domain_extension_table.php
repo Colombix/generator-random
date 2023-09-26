@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('domain_extension', function (Blueprint $table) {
             $table->foreignId('extension_id')->constrained('extensions')->onDelete('cascade');
             $table->foreignId('domain_id')->constrained('domains')->onDelete('cascade');
-            $table->boolean('is_available');
+            $table->boolean('is_available')->nullable();
         });
     }
 
