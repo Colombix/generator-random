@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Relations\Pivot;
 
 
-class DomainWord extends Pivot
+class DomainExtension extends Pivot
 {
     public array $availability = [
         'available' => 'available',

@@ -10,12 +10,15 @@ class Domain extends Model
 {
     use HasFactory;
 
+
     protected $fillable = [
         'name',
     ];
 
     public function extensions(): BelongsToMany
     {
-        return $this->belongsToMany(Extension::class, 'domain_word')->withPivot('status');
+
+        return $this->belongsToMany(Extension::class, 'domain_extension')->withPivot('is_available')->using(DomainExtension::class);
+
     }
 }

@@ -16,6 +16,6 @@ class Extension extends Model
 
     public function domains(): BelongsToMany
     {
-        return $this->belongsToMany(Domain::class, 'domain_word')->withPivot('status');
+        return $this->belongsToMany(Domain::class, 'domain_extension')->withPivot('is_available')->using(DomainExtension::class);
     }
 }

@@ -12,15 +12,17 @@
                     <div>
                         <ul>
                             @can('viewAny')
-                            @foreach ($domains as $domain)
-                                {{ $domain->name . " $domainsFr->extension : " . $domain->domains()->where('domain_id', $domainsFr->getKey())->first()->pivot->status }}
+                                @foreach ($domains as $domain)
 
-                                {{ $domain->name . " $domainsCom->extension : " . $domain->domains()->where('domain_id', $domainsCom->getKey())->first()->pivot->status }}
-                                <br>
-                            @endforeach
+{{--                                    {{ $domain->name . " $extensionFr->extension : " . $domain->extensions()->where('extension_id', $extensionFr->getKey())->first()->pivot->is_available }}--}}
+
+
+                                    {{ $domain->name . "  " . $domain->extensions()->first()->pivot->is_available }}
+                                    <br>
+                                @endforeach
                             @endcan
                         </ul>
-                        {{ $words->links() }}
+                        {{ $domains->links() }}
                         <ul>
                         </ul>
                         <br>

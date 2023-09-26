@@ -11,7 +11,7 @@
                 <div class="p-6 text-gray-900">
                     {{ __("You're logged in!") }}
                     <div>
-                        <a href="{{ route('word.index') }}" class="text-blue-500 hover:underline">
+                        <a href="{{ route('domains.index') }}" class="text-blue-500 hover:underline">
                             {{ __('Go Data') }}
 
                         </a>

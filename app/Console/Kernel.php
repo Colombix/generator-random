@@ -3,7 +3,7 @@
 namespace App\Console;
 
 use App\Jobs\CheckDomainAvailability;
-use App\Jobs\ProcessGenerateRandomDomain;
+use App\Jobs\GenerateRandomDomain;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 
@@ -12,10 +12,13 @@ class Kernel extends ConsoleKernel
 
     protected function schedule(Schedule $schedule): void
     {
-        $schedule->job(new ProcessGenerateRandomDomain())
+        $schedule->job(
+            new GenerateRandomDomain()
+        )
             ->everySecond();
 
-
+        $schedule->command('telescope:prune')->daily();
+        $schedule->command('horizon:snapshot')->everyFiveMinutes();
     }
 
 

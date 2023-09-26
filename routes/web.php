@@ -16,15 +16,15 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('word.welcome');
+    return view('domains.welcome');
 });
 
 Route::middleware('auth')->group(function () {
 
-    Route::resource('word', DomainsController::class)->only('index');
+    Route::resource('domains', DomainsController::class)->only('index');
 
     Route::get('/dashboard', function () {
-        return view('word.dashboard');
+        return view('domains.dashboard');
     })->name('dashboard');
 
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
