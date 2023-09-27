@@ -12,15 +12,17 @@ return new class extends Migration {
     public function up(): void
     {
 
-        // améliorer le code crée plusieur permissions , crée un autre tableau pour faire un foreach sur mes permissions create
-
         $adminRole = Role::create(['name' => 'admin']);
-        $user = Role::create(['name' => 'user']);
+        $userRole = Role::create(['name' => 'user']);
 
-        Permission::create(['name' => 'viewAny']);
 
-        $adminRole->givePermissionTo(['viewAny']);
-        $user->givePermissionTo(['viewAny']);
+        Permission::create(['name' => 'view domains']);
+        Permission::create(['name' => 'view private extension']);
+
+        $userRole->givePermissionTo('view domains');
+        $adminRole->givePermissionTo('view domains');
+
+        $adminRole->givePermissionTo('view private extension');
 
 
     }
@@ -28,5 +30,6 @@ return new class extends Migration {
     public function down(): void
     {
         Schema::dropIfExists('role_tables');
+
     }
 };

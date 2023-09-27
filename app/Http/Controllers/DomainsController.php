@@ -10,11 +10,6 @@ class DomainsController extends Controller
 {
     public function index()
     {
-//        $domains = Domain::paginate(10);
-//        //@TODO: where com / where fr a bannir + 1 seule requête
-//        $extensionCom = Extension::where('extension', 'com')->first();
-//        $extensionFr = Extension::where('extension', 'fr')->first();
-
 
         $extensions = Extension::all();
 

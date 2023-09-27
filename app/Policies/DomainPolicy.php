@@ -9,18 +9,17 @@ use Illuminate\Auth\Access\Response;
 class DomainPolicy
 {
 
-    public function viewAny(User $user): bool
+    public function viewAny(User $user)
     {
-        return true;
+        return $user->can('view domains');
+
     }
 
 
     public function view(User $user, Extension $domain): bool
     {
-        // A FAIRE
-        return true;
+        return $user->can('view private extension');
     }
-
 
     public function create(User $user): bool
     {
@@ -36,6 +35,7 @@ class DomainPolicy
 
     public function delete(User $user, Extension $domain): bool
     {
+
         return true;
     }
 

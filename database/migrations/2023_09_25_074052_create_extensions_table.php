@@ -6,30 +6,28 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
-    /**
-     * Run the migrations.
-     */
+
     public function up(): void
     {
         Schema::create('extensions', function (Blueprint $table) {
             $table->id();
             $table->timestamps();
             $table->string('extension', 40)->nullable();
+            $table->boolean('is_private')->default(false);
+
         });
 
         Extension::create([
             'extension' => 'fr',
+
         ]);
 
         Extension::create([
-            'extension' => 'com'
+            'extension' => 'com',
+            'is_private' => true
         ]);
     }
 
-
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('extensions');

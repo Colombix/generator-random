@@ -54,7 +54,6 @@ class GenerateRandomDomain implements ShouldQueue, ShouldBeUniqueUntilProcessing
         $generatedWords = $matches[1];
 
 
-
         foreach ($generatedWords as $generatedWord) {
             $domain = Domain::create(
                 ['name' => $generatedWord]

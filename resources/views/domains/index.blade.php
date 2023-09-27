@@ -10,48 +10,29 @@
             <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
                 <div class="p-6 text-gray-900">
                     <div>
-                        <ul>
-                            <table class="table-auto">
-                                <thead>
+                        <table class="table-auto">
+                            <thead>
+                            <tr>
+                                <th>Mot</th>
+                                <th>Status</th>
+                            </tr>
+
+                            </thead>
+                            <tbody>
+                            @foreach ($domains as $domain)
                                 <tr>
-                                    <th>Mot</th>
-                                    <th>Artist</th>
-                                    <th>Year</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                <tr>
-                                    <td>The Sliding Mr. Bones (Next Stop, Pottersville)</td>
-                                    <td>Malcolm Lockyer</td>
-                                    <td>1961</td>
-                                </tr>
-                                <tr>
-                                    <td>Witchy Woman</td>
-                                    <td>The Eagles</td>
-                                    <td>1972</td>
-                                </tr>
-                                <tr>
-                                    <td>Shining Star</td>
-                                    <td>Earth, Wind, and Fire</td>
-                                    <td>1975</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                                @foreach ($domains as $domain)
+                                    <td>{{ $domain->name }} </td>
 
 
-{{--                                    {{ $domain->name . " $extensionFr->extension : " . $domain->extensions()->where('extension_id', $extensionFr->getKey())->first()->pivot->is_available }}--}}
+                                    <td> - {{ "  " . $domain->extensions()->where('extension','fr')->first()->pivot->is_available }}</td>
+                                </tr>
+                            @endforeach
 
-                                    {{$domain->name . "  " . $domain->extensions()->first()->pivot->is_available }}
-                                    <br>
-                                @endforeach
-                        </ul>
+
+
+                            </tbody>
+                        </table>
                         {{ $domains->links() }}
-
-
-
-                        <ul>
-                        </ul>
                         <br>
                         <br>
                         <a href="{{ route('dashboard') }}">Return Dashboard</a>
@@ -61,3 +42,6 @@
         </div>
     </div>
 </x-app-layout>
+
+
+
