@@ -23,11 +23,19 @@
                                 <tr>
                                     <td>{{ $domain->name }} </td>
 
+                                    @can('view', Domain::class)
+                                        <td>
+                                            - {{ "  " . $domain->extensions()->where('extension','fr')->first()?->pivot->is_available }}</td>
+                                    @endcan
 
-                                    <td> - {{ "  " . $domain->extensions()->where('extension','fr')->first()->pivot->is_available }}</td>
+
+                                    @can('vew' ,Extension::class)
+                                        <td>
+                                            - {{ "  " . $domain->extensions()->where('extension','com')->first()?->pivot->is_available }}</td>
+                                    @endcan
                                 </tr>
-                            @endforeach
 
+                            @endforeach
 
 
                             </tbody>

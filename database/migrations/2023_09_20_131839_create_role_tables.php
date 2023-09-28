@@ -16,13 +16,13 @@ return new class extends Migration {
         $userRole = Role::create(['name' => 'user']);
 
 
-        Permission::create(['name' => 'view domains']);
-        Permission::create(['name' => 'view private extension']);
+        Permission::create(['name' => 'view extension']);
+        Permission::create(['name' => 'view public extensions']);
 
-        $userRole->givePermissionTo('view domains');
-        $adminRole->givePermissionTo('view domains');
+        $userRole->givePermissionTo('view public extensions');
+        $adminRole->givePermissionTo('view public extensions');
 
-        $adminRole->givePermissionTo('view private extension');
+        $adminRole->givePermissionTo('view extension');
 
 
     }

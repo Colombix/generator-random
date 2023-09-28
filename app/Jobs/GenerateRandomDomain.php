@@ -59,7 +59,7 @@ class GenerateRandomDomain implements ShouldQueue, ShouldBeUniqueUntilProcessing
                 ['name' => $generatedWord]
             );
 
-            $domain->extensions()->attach($allExtensions);
+            $domain->extensions()->attach($allExtensions,["is_available" => false]);
 
             CheckDomainAvailability::dispatch($domain);
         }
