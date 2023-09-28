@@ -2,51 +2,65 @@
 
 namespace App\Policies;
 
-use App\Models\Extension;
+use App\Models\Domain;
 use App\Models\User;
 use Illuminate\Auth\Access\Response;
 
 class DomainPolicy
 {
-
-    public function viewAny(User $user)
+    /**
+     * Determine whether the user can view any models.
+     */
+    public function viewAny(User $user): bool
     {
-        return $user->can('view domains');
-
+        // crée perm pour aller a la page domain
+       return $user->can('view domains');
     }
 
-
-    public function view(User $user, Extension $domain): bool
+    /**
+     * Determine whether the user can view the model.
+     */
+    public function view(User $user, Domain $domain): bool
     {
-        return $user->can('view private extension');
+        return true;
     }
 
+    /**
+     * Determine whether the user can create models.
+     */
     public function create(User $user): bool
     {
         return true;
     }
 
-
-    public function update(User $user, Extension $domain): bool
+    /**
+     * Determine whether the user can update the model.
+     */
+    public function update(User $user, Domain $domain): bool
     {
         return true;
     }
 
-
-    public function delete(User $user, Extension $domain): bool
-    {
-
-        return true;
-    }
-
-
-    public function restore(User $user, Extension $domain): bool
+    /**
+     * Determine whether the user can delete the model.
+     */
+    public function delete(User $user, Domain $domain): bool
     {
         return true;
     }
 
+    /**
+     * Determine whether the user can restore the model.
+     */
+    public function restore(User $user, Domain $domain): bool
+    {
+        return true;
+    }
 
-    public function forceDelete(User $user, Extension $domain): bool
+    /**
+     * Determine whether the user can permanently delete the model.
+     */
+    public function forceDelete(User $user, Domain $domain): bool
     {
         return true;
     }
