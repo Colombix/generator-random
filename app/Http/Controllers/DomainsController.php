@@ -54,7 +54,7 @@ class DomainsController extends Controller
     public function show (){
 
 
-        $this->authorize('view own extensions');
+        $this->authorize('view own extensions','domains');
 
         return view('domains.show');
 
