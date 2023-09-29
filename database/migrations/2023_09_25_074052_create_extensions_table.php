@@ -17,10 +17,13 @@ return new class extends Migration {
 
         });
 
-        Extension::create([
-            'extension' => 'fr',
-
-        ]);
+        foreach ([
+                     'net', 'org', 'io', 'fr',
+                 ] as $extension) {
+            Extension::create([
+                'extension' => $extension
+            ]);
+        }
 
         Extension::create([
             'extension' => 'com',

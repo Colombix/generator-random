@@ -1,55 +1,55 @@
-<x-app-layout>
-    <x-slot name="header">
-        <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-            {{ __('Dashboard') }}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.16/tailwind.min.css">
+</head>
+<body class="bg-gray-100">
+<header class="bg-white shadow">
+    <div class="max-w-7xl mx-auto py-4 px-6">
+        <h2 class="text-2xl font-semibold text-gray-800 leading-tight">
+            Dashboard
         </h2>
-    </x-slot>
+    </div>
+</header>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 text-gray-900">
-                    <div>
-                        <table class="table-auto">
-                            <thead>
-                            <tr>
-                                <th>Mot</th>
-                                <th>Status</th>
-                            </tr>
-
-                            </thead>
-                            <tbody>
-                            @foreach ($domains as $domain)
-                                <tr>
-                                    <td>{{ $domain->name }} </td>
-
-                                    @can('view', Domain::class)
-                                        <td>
-                                            - {{ "  " . $domain->extensions()->where('extension','fr')->first()?->pivot->is_available }}</td>
-                                    @endcan
-
-
-                                    @can('vew' ,Extension::class)
-                                        <td>
-                                            - {{ "  " . $domain->extensions()->where('extension','com')->first()?->pivot->is_available }}</td>
-                                    @endcan
-                                </tr>
-
+<main class="py-12">
+    <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+            <div class="p-6 text-gray-900">
+                <div>
+                    <table class="table-auto w-full border">
+                        <thead>
+                        <tr>
+                            <th class="px-4 py-2 border">Mot</th>
+                            @foreach($extensions as $extension)
+                                <th class="px-4 py-2 border">{{$extension->extension}}</th>
                             @endforeach
-
-
-                            </tbody>
-                        </table>
-                        {{ $domains->links() }}
-                        <br>
-                        <br>
-                        <a href="{{ route('dashboard') }}">Return Dashboard</a>
-                    </div>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach ($domains as $domain)
+                            <tr>
+                                <td class="px-4 py-2 border">{{ $domain->name }}</td>
+                                @foreach ($extensions as $extension)
+                                    <td class="px-4 py-2 border">
+                                        {{ $domain->extensions()->where('extension',$extension->extension)->first()?->pivot->is_available}}
+                                    </td>
+                                @endforeach
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                    {{ $domains->links() }}
+                    <br>
+                    <br>
+                    <a href="{{ route('dashboard') }}" class="text-blue-500">Retour au tableau de bord</a>
                 </div>
             </div>
         </div>
     </div>
-</x-app-layout>
-
-
-
+</main>
+</body>
+</html>

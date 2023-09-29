@@ -26,19 +26,28 @@ class CheckDomainAvailability implements ShouldQueue
 
     public function handle(): void
     {
+
+
         $whoisClient = new SimpleWhoisClient();
         $dataLoader = new JsonLoader(app_path('../vendor/helgesverre/domain-availability/src/data/servers.json'));
 
+
         $this->domainAvailability = new DomainAvailability($whoisClient, $dataLoader);
 
+
         foreach (Extension::query()->cursor() as $extension) {
+
             $this->checkDomainAvailabilityForExtension($this->domain, $extension);
+
+
         }
     }
 
     private function checkDomainAvailabilityForExtension(Domain $domain, Extension $extension)
     {
+
         $fullDomainName = "$domain->name.$extension->extension";
+
 
         $extension->domains()->attach($domain, ['is_available' => $this->domainAvailability->isAvailable($fullDomainName)]);
     }

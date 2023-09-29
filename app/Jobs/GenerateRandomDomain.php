@@ -46,8 +46,6 @@ class GenerateRandomDomain implements ShouldQueue, ShouldBeUniqueUntilProcessing
 
         $content = $response->body();
 
-        $allExtensions = Extension::query()->get()->pluck('id');
-
         $pattern = '/<div class="col-3 mb-3">([^<]+)<\/div>/';
         preg_match_all($pattern, $content, $matches);
 
@@ -58,8 +56,6 @@ class GenerateRandomDomain implements ShouldQueue, ShouldBeUniqueUntilProcessing
             $domain = Domain::create(
                 ['name' => $generatedWord]
             );
-
-            $domain->extensions()->attach($allExtensions,["is_available" => false]);
 
             CheckDomainAvailability::dispatch($domain);
         }

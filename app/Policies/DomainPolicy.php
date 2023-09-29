@@ -13,8 +13,7 @@ class DomainPolicy
      */
     public function viewAny(User $user): bool
     {
-        // crée perm pour aller a la page domain
-       return $user->can('view domains');
+     return true;
     }
 
     /**
@@ -30,7 +29,7 @@ class DomainPolicy
      */
     public function create(User $user): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -38,7 +37,7 @@ class DomainPolicy
      */
     public function update(User $user, Domain $domain): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -46,7 +45,7 @@ class DomainPolicy
      */
     public function delete(User $user, Domain $domain): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -54,7 +53,7 @@ class DomainPolicy
      */
     public function restore(User $user, Domain $domain): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -62,6 +61,6 @@ class DomainPolicy
      */
     public function forceDelete(User $user, Domain $domain): bool
     {
-        return true;
+        return false;
     }
 }

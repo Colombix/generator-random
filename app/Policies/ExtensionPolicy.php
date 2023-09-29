@@ -13,8 +13,7 @@ class ExtensionPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->canAny(['view public extension','view extension']);
-
+        return $user->canAny(['view public extensions','view extensions']);
     }
 
     /**
@@ -22,7 +21,8 @@ class ExtensionPolicy
      */
     public function view(User $user, Extension $extension): bool
     {
-        return true;
+
+        return $user->can('view own extensions');
     }
 
     /**
@@ -30,7 +30,7 @@ class ExtensionPolicy
      */
     public function create(User $user): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -38,7 +38,7 @@ class ExtensionPolicy
      */
     public function update(User $user, Extension $extension): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -46,7 +46,7 @@ class ExtensionPolicy
      */
     public function delete(User $user, Extension $extension): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -54,7 +54,7 @@ class ExtensionPolicy
      */
     public function restore(User $user, Extension $extension): bool
     {
-        return true;
+        return false;
     }
 
     /**
@@ -62,6 +62,6 @@ class ExtensionPolicy
      */
     public function forceDelete(User $user, Extension $extension): bool
     {
-        return true;
+        return false;
     }
 }
