@@ -10,7 +10,7 @@
 <header class="bg-white shadow">
     <div class="max-w-7xl mx-auto py-4 px-6">
         <h2 class="text-2xl font-semibold text-gray-800 leading-tight">
-            Dashboard
+            Nom de domain
         </h2>
     </div>
 </header>
@@ -24,19 +24,22 @@
                         <thead>
                         <tr>
                             <th class="px-4 py-2 border">Mot</th>
-
-
                             @foreach($extensions as $extension)
                                 <th class="px-4 py-2 border">{{$extension->extension}}</th>
                             @endforeach
                         </tr>
                         </thead>
                         <tbody>
+
+                        </a>
                         @foreach ($domains as $domain)
                             <tr>
                                 <td class="px-4 py-2 border">
                                     <a href="{{ route('domains.show', ['domain' => $domain->id]) }}">
                                         {{ $domain->name }}
+                                    </a>
+
+                                </td>
                                 @foreach ($extensions as $extension)
                                     <td class="px-4 py-2 border">
                                         {{ $domain->extensions()->where('extension',$extension->extension)->first()?->pivot->is_available}}

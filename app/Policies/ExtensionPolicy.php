@@ -13,7 +13,7 @@ class ExtensionPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->canAny(['view public extensions','view extensions']);
+        return $user->canAny(['view public extensions', 'view extensions']);
     }
 
     /**
@@ -33,7 +33,7 @@ class ExtensionPolicy
         return false;
     }
 
-    /**
+     /**
      * Determine whether the user can update the model.
      */
     public function update(User $user, Extension $extension): bool

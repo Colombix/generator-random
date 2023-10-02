@@ -14,7 +14,7 @@ class DomainsController extends Controller
     {
         $this->middleware('auth');
 
-        $this->authorizeResource(Domain::class, 'domains');
+        $this->authorizeResource(Domain::class, 'domain');
     }
 
     public function index()
@@ -50,14 +50,11 @@ class DomainsController extends Controller
     }
 
 
+    public function show(Domain $domain)
+    {
+        $this->authorize('view', $domain);
 
-    public function show (){
-
-
-        $this->authorize('view own extensions','domains');
-
-        return view('domains.show');
-
+        return view('domains.show', compact('domain'));
     }
 }
 

@@ -21,9 +21,7 @@ Route::get('/', function () {
 
 Route::middleware('auth')->group(function () {
 
-    Route::resource('domains', DomainsController::class)->only('index');
-
-    Route::get('/domains/{domain}', 'DomainsController@show')->name('domains.show');
+    Route::resource('domains', DomainsController::class)->only(['index','show']);
 
 
     Route::get('/dashboard', function () {
