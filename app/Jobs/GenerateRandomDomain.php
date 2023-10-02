@@ -2,7 +2,6 @@
 
 namespace App\Jobs;
 
-use App\Models\Extension;
 use App\Models\Domain;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUniqueUntilProcessing;
@@ -11,8 +10,6 @@ use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\Http;
-
-
 
 
 class GenerateRandomDomain implements ShouldQueue, ShouldBeUniqueUntilProcessing

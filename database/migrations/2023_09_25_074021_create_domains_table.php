@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('domains', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
             $table->string('name', 50)->unique();
+            $table->timestamps();
         });
     }
 

@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +10,7 @@
 <header class="bg-white shadow">
     <div class="max-w-7xl mx-auto py-4 px-6">
         <h2 class="text-2xl font-semibold text-gray-800 leading-tight">
-            Nom de domain
+            Nom de domaine
         </h2>
     </div>
 </header>
@@ -30,15 +30,10 @@
                         </tr>
                         </thead>
                         <tbody>
-
-                        </a>
                         @foreach ($domains as $domain)
                             <tr>
                                 <td class="px-4 py-2 border">
-                                    <a href="{{ route('domains.show', ['domain' => $domain->id]) }}">
-                                        {{ $domain->name }}
-                                    </a>
-
+                                    <a href="{{ route('domains.show', ['domain' => $domain->id]) }}" class="text-blue-500 hover:underline">{{ $domain->name }}</a>
                                 </td>
                                 @foreach ($extensions as $extension)
                                     <td class="px-4 py-2 border">
@@ -52,7 +47,7 @@
                     {{ $domains->links() }}
                     <br>
                     <br>
-                    <a href="{{ route('dashboard') }}" class="text-blue-500">Retour au tableau de bord</a>
+                    <a href="{{ route('dashboard') }}" class="text-blue-500 hover:underline">Retour au tableau de bord</a>
                 </div>
             </div>
         </div>

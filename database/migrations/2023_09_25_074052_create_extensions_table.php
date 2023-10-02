@@ -11,14 +11,14 @@ return new class extends Migration {
     {
         Schema::create('extensions', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
-            $table->string('extension', 40)->nullable();
+            $table->string('extension', 40)->nullable()->index();
             $table->boolean('is_private')->default(false);
+            $table->timestamps();
 
         });
 
         foreach ([
-                     'net', 'org', 'io', 'fr',
+                     'net', 'org', 'io', 'fr','kg','ac','af','ag','md',
                  ] as $extension) {
             Extension::create([
                 'extension' => $extension

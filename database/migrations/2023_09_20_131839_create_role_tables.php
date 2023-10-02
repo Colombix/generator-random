@@ -20,7 +20,6 @@ return new class extends Migration {
         Permission::create(['name' => 'view domains']);
         Permission::create(['name' => 'view public extensions']);
         Permission::create(['name' => 'view own extensions']);
-        Permission::create(['name' => 'view own domains']);
 
 
         $userRole->givePermissionTo('view domains');
@@ -34,8 +33,6 @@ return new class extends Migration {
         $userRole->givePermissionTo('view own extensions');
         $adminRole->givePermissionTo('view own extensions');
 
-        $userRole->givePermissionTo('view own domains');
-        $adminRole->givePermissionTo('view own domains');
     }
 
     public function down(): void

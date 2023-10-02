@@ -26,8 +26,6 @@ class DomainsController extends Controller
             if ($user->can('view extensions')) {
                 return $query;
             } elseif ($user->can('view public extensions')) {
-
-
                 return $query->where('is_private', false);
             } else {
                 return $query->limit(0);
@@ -36,14 +34,12 @@ class DomainsController extends Controller
 
         $domains = Domain::with(['extensions' => function ($query) use ($user) {
             if ($user->can('view extensions')) {
-
                 return $query;
             } elseif ($user->can('view public extensions')) {
                 return $query->where('is_private', false);
             } else {
                 return $query->limit(0);
             }
-
         }])->paginate(10);
 
         return view('domains.index', compact('domains', 'extensions'));
